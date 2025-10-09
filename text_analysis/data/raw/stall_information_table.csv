@@ -1,0 +1,7 @@
+Tag,Tent,Stall,Product,Advertisement Object,Keyword,Layout Hierarchy,Placement & Visibility,Display Level,"Information (position, types)"
+EV1-01,1,1,flower,,"baskets, colors, patterns, textures",LH2,PV3,DS1,"(L1,B3)"
+EV1-02,1,2,"Juice, Fruits, Vegetables",,Green tablecloth,LH1,PV2,DS1,"(L2,B4)"
+EV1-03,1,3,"Pumpkin, Vegetables",Signage,"Package, baskets",LH2,PV2,DS2,"(L1,L2,B4)"
+EV1-04,1,4,"Kakigori, Crafts, Coffee, tea","Hanging banner, billboard, utensil","Ice, shakes, watermelon, gift, wooden",LH3,PV2,DS3,"(L1,L2,L3,B1)"
+EV1-07,2,7,wakame,,"Seaweed, fishermen",LH1,PV2,DS2,"(L1, L2,B4)"
+EV1-08,2,8,"Hot sandwich, Mamanai Zukedon, Oysters","Fish, turban shell meal","Octopus, Fish, seafood, floor, snail, rice cooker, donburi, makarazuke, glass container, cooler box, makanai don, blue cash, plain",LH3,PV2,DS1,"(L1,B4)"
