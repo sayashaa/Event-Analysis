@@ -47,7 +47,7 @@ class DetectionRunner:
         # Mapping and template storage
         self._id_mapping = {}
         self._template_coords = {}
-        self._saved_crops = set()   # <-- track saved crops to avoid duplicates
+        self._saved_crops = set()
 
         # Models
         self.yolo = YOLO('yolo11n.pt')
@@ -126,7 +126,8 @@ class DetectionRunner:
     # ----------------------------
     # Reference frame saving
     # ----------------------------
-    def _save_reference_frame(self, frame, frame_idx, confirmed, id_mapping, video_name):
+    def _save_reference_frame(self, frame, frame_idx, confirmed, id_mapping, video_name,
+                              circle_radius=5, text_scale=0.5, text_thickness=1):
         annotated = frame.copy()
         for t in confirmed:
             ds_id = int(t.track_id)
@@ -134,9 +135,9 @@ class DetectionRunner:
             x1, y1, x2, y2 = map(int, t.to_ltrb())
             cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
             color = (0, 255, 0) if not str(fid).startswith('unknown') else (0, 0, 255)
-            cv2.circle(annotated, (cx, cy), 5, color, -1)
-            cv2.putText(annotated, f"ID {fid}", (cx + 6, cy - 6),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
+            cv2.circle(annotated, (cx, cy), circle_radius, color, -1)
+            cv2.putText(annotated, f"ID {fid}", (cx + circle_radius + 2, cy - circle_radius),
+                        cv2.FONT_HERSHEY_SIMPLEX, text_scale, color, text_thickness)
 
         ref_name = f"{video_name}_ref_{frame_idx}.jpg"
         ref_path = os.path.join(self.reference_dir, ref_name)
@@ -146,9 +147,6 @@ class DetectionRunner:
     # Crop saving
     # ----------------------------
     def _save_crop(self, frame, bbox, assigned_id, frame_idx, video_name):
-        """
-        Save crop for the assigned ID only once.
-        """
         crop_name = f"{video_name}_id-{assigned_id}_frame-{frame_idx}.jpg"
         crop_path = os.path.join(self.crops_dir, crop_name)
 
@@ -175,7 +173,7 @@ class DetectionRunner:
         log_path = os.path.join(self.data_dir, log_filename)
         self.current_log_name = video_name
 
-        # Clear old reference frames for this video
+        # Clear old reference frames
         for f in os.listdir(self.reference_dir):
             if f.startswith(video_name + "_ref_"):
                 os.remove(os.path.join(self.reference_dir, f))
@@ -189,21 +187,25 @@ class DetectionRunner:
         max_id = 0
         unknown_counter = 0
         first_frame = True
-        N_previous = 0
 
+        cap = cv2.VideoCapture(video_path)
+        fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+        # Scale factors for drawing
+        scale_factor = max(frame_w, frame_h) / 1280.0
+        circle_radius = int(5 * scale_factor)
+        text_scale = 0.5 * scale_factor
+        text_thickness = max(1, int(1 * scale_factor))
+
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(self.output_video, fourcc, fps, (frame_w, frame_h))
+
+        frame_idx = 0
         with open(log_path, 'w', newline='', encoding='utf-8') as log_file:
             log_writer = csv.writer(log_file)
             log_writer.writerow(['frame', 'id', 'x', 'y'])
-
-            cap = cv2.VideoCapture(video_path)
-            fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
-            frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            out = cv2.VideoWriter(self.output_video, fourcc, fps, (frame_w, frame_h))
-
-            frame_idx = 0
 
             while cap.isOpened() and not self._stop_event.is_set():
                 while self._pause_event.is_set() and not self._stop_event.is_set():
@@ -241,12 +243,10 @@ class DetectionRunner:
 
                 tracks = self.tracker.update_tracks(detections, frame=frame)
                 confirmed = [t for t in tracks if t.is_confirmed()]
-                current_count = len(confirmed)
 
-                # --- First frame init ---
-                if first_frame and current_count > 0:
+                # First frame init
+                if first_frame and confirmed:
                     first_frame = False
-                    N_previous = current_count
                     for t in confirmed:
                         ds_id = int(t.track_id)
                         x1, y1, x2, y2 = map(int, t.to_ltrb())
@@ -295,9 +295,7 @@ class DetectionRunner:
                                 template_coords[assigned] = (cx, cy)
                                 self._save_crop(frame, (x1, y1, x2, y2), assigned, frame_idx, video_name)
 
-                    N_previous = current_count
-
-                # --- Log ---
+                # Log
                 for t in confirmed:
                     ds_id = int(t.track_id)
                     fid = id_mapping.get(ds_id, 'unknown')
@@ -305,11 +303,12 @@ class DetectionRunner:
                     cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
                     log_writer.writerow([frame_idx, fid, cx, cy])
 
-                # --- Save reference frames every 100 frames ---
-                if frame_idx % 100 == 0 and current_count > 0:
-                    self._save_reference_frame(frame, frame_idx, confirmed, id_mapping, video_name)
+                # Save reference frames every 100 frames
+                if frame_idx % 100 == 0 and confirmed:
+                    self._save_reference_frame(frame, frame_idx, confirmed, id_mapping, video_name,
+                                               circle_radius, text_scale, text_thickness)
 
-                # --- Overlay for preview ---
+                # Overlay for preview
                 cv2.line(frame, (self.BORDER, 0), (self.BORDER, frame_h), (255, 255, 0), 2)
                 cv2.line(frame, (frame_w - self.BORDER, 0), (frame_w - self.BORDER, frame_h), (255, 255, 0), 2)
                 for t in confirmed:
@@ -318,8 +317,9 @@ class DetectionRunner:
                     x1, y1, x2, y2 = map(int, t.to_ltrb())
                     cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
                     color = (0, 0, 255) if str(fid).startswith('unknown') else (0, 255, 0)
-                    cv2.circle(frame, (cx, cy), 5, color, -1)
-                    cv2.putText(frame, f"ID {fid}", (cx + 6, cy - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
+                    cv2.circle(frame, (cx, cy), circle_radius, color, -1)
+                    cv2.putText(frame, f"ID {fid}", (cx + circle_radius + 2, cy - circle_radius),
+                                cv2.FONT_HERSHEY_SIMPLEX, text_scale, color, text_thickness)
 
                 out.write(frame)
                 ret2, jpg = cv2.imencode('.jpg', frame)
@@ -330,7 +330,6 @@ class DetectionRunner:
 
                 time.sleep(max(0, 1.0 / fps))
 
-            cap.release()
-            out.release()
-
+        cap.release()
+        out.release()
         self.is_running = False
