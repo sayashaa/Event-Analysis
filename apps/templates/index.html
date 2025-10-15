@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitor ID Assignment</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <style>
+    /* --- Reference Frame Maximize Overlay --- */
+    #refOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #refOverlay.shown {
+      display: flex;
+    }
+    #refOverlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+    #refOverlayClose {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: #fff;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .ref-frame-wrap {
+      position: relative;
+    }
+    .ref-maximize-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-size: 12px;
+      cursor: pointer;
+      z-index: 2;
+      pointer-events: auto;
+    }
+    .ref-maximize-btn:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>VISITOR ID ASSIGNMENT</h1>
+  </header>
+
+  <!-- Video path input + START -->
+  <section class="controls">
+    <input id="videoPath" type="text" placeholder="TYPE VIDEO PATH TO START DETECTION" />
+    <button id="startBtn">START</button>
+  </section>
+
+  <main class="grid">
+    <!-- Detection Preview -->
+    <section class="panel preview">
+      <h2>DETECTION PREVIEW</h2>
+      <div class="video-wrap">
+        <img id="preview" alt="preview will appear here" />
+      </div>
+
+      <!-- Detection Control Buttons -->
+      <div class="detection-controls" style="display:flex; gap:10px; justify-content:center; margin-top:12px;">
+        <button id="pauseBtn">PAUSE</button>
+        <button id="resumeBtn">RESUME</button>
+        <button id="stopBtn">STOP</button>
+      </div>
+    </section>
+
+    <!-- Real-time Table (right column) -->
+    <section class="panel realtime">
+      <h2>REAL TIME DATA</h2>
+      <div class="table-wrap">
+        <table id="rtTable">
+          <thead>
+            <tr>
+              <th>FRAME</th>
+              <th>ID</th>
+              <th>X</th>
+              <th>Y</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="downloads" id="downloads">
+        <a id="downloadLog" href="#" target="_blank">Download movement_log.csv</a>
+        <a id="downloadLogFinal" href="#" target="_blank">Download movement_log_final.csv</a>
+      </div>
+    </section>
+
+    <!-- Bottom row: 3 columns spanning full width -->
+    <div style="grid-column:1 / -1; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:24px; align-items:start;">
+      <!-- ID Reassign -->
+      <section class="panel reassign">
+        <h2>ID REASSIGN INPUT</h2>
+        <div class="two-col">
+          <div>
+            <label>WRONG ID</label>
+            <input id="wrongId" type="text" />
+          </div>
+          <div>
+            <label>CORRECT ID</label>
+            <input id="correctId" type="text" />
+          </div>
+        </div>
+        <button id="submitBtn">SUBMIT</button>
+        <p id="msg" class="msg"></p>
+      </section>
+
+      <!-- Delete ID -->
+      <section class="panel reassign delete">
+        <h2>DELETE ID</h2>
+        <div class="two-col">
+          <div>
+            <label>ID TO DELETE</label>
+            <input id="deleteId" type="text" />
+          </div>
+          <div><!-- empty for symmetry --></div>
+        </div>
+        <button id="deleteBtn">DELETE</button>
+        <p id="deleteMsg" class="msg"></p>
+      </section>
+
+      <!-- Reference Frames Viewer -->
+      <section class="panel reference">
+        <h2>REFERENCE FRAMES</h2>
+        <div class="reference-viewer" style="text-align:center;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            <button id="refPrev" class="ref-nav" style="padding:4px 10px;">←</button>
+            <div class="ref-frame-wrap" style="width:240px; height:160px; background:#f0f0f0; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+              <img id="refFrameImg" src="" alt="Reference Frame" style="max-width:100%; max-height:100%; object-fit:contain;" />
+              <button id="refMaximize" class="ref-maximize-btn" title="Maximize">⛶</button>
+            </div>
+            <button id="refNext" class="ref-nav" style="padding:4px 10px;">→</button>
+          </div>
+          <p id="refFrameLabel" style="margin-top:6px; font-size:14px; color:#333;">No reference frames yet</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Overlay for full-screen reference image -->
+  <div id="refOverlay">
+    <button id="refOverlayClose">Close</button>
+    <img id="refOverlayImg" src="" alt="Reference Frame Full" />
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
