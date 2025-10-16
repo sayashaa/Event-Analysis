@@ -1,3 +1,7 @@
 apps/venv_idapp/
 apps/videos/*
 !apps/videos/.gitkeep
+apps/data/crops/*
+!apps/data/crops/.gitkeep
+apps/output/*
+!apps/output/.gitkeep
