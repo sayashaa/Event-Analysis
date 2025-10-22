@@ -1,0 +1,9 @@
+﻿Participant_id,Name,Gender,Marital status,Having kids
+P1,1,Male,married,No
+P2,2,Male,unmarried,No
+P3,3,Male,unmarried,No
+P4,4,Female,unmarried,No
+P5,5,Female,unmarried,No
+P6,6,Male,married,No
+P7,7,Male,married,Yes
+P8,8,Female,married,Yes
