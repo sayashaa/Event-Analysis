@@ -1,0 +1,19 @@
+﻿Question_id,Question_list,Total Response,Category_ID,Category
+Q001,"What are the good and bad aspects of the shop lineup, and why?",8,SB04,Improvement Priority Level
+Q002,Can you imagine the season or time of day based on the information about the shops and locations?,8,OV01,Seasonal Fit & Environmental Atmosphere
+Q003,What could make this place more attractive?,8,SB04,Improvement Priority Level
+Q004,Can you clearly identify all of the shops?,8,SB01,Visibility
+Q005,Which type of visitors do you think would enjoy this place the most?,8,OV04,Target Market
+Q006,"If you could add one more shop, what kind would you choose?",8,OV05,Shop suggestion
+Q007,"If you were the organizer, what would you change and why? (not limited to shops)",8,SB04,Improvement Priority Level
+Q008,Are the pop-up displays and other visual features easy to see?,8,SB01,Visibility
+Q009,Would it be easy to participate alone?,8,OV02,"Safety, Accessibility & Participation Ease"
+Q010,Does this look like a place you could enjoy with all five senses?,8,SB03,Family Friendliness & Comfiness
+Q011,"When watching the video, was there any shop you wanted to visit? Why?",8,SB02,Attractiveness
+Q012,Is there anything or any area that feels dangerous? Why?,8,OV02,"Safety, Accessibility & Participation Ease"
+Q013,Can you predict the general flow or movement route of visitors?,8,OV03,Flow & Layout Usability
+Q014,Does this look like a place that would be enjoyable to visit with children?,8,SB03,Family Friendliness & Comfiness
+Q015,"Would you like to participate in this event? If so, who would you like to go with?",8,OV06,Participation Appeal & Motivation
+Q016,"If you happened to pass by this event, would it be easy to join in?",8,OV06,Participation Appeal & Motivation
+Q017,"If you were to rank the places or shops you would like to visit, what would the order be and why?",8,SB02,Attractiveness
+Q018,"If it were raining, would you avoid going even if it was just light rain?",1,NONE,NONE

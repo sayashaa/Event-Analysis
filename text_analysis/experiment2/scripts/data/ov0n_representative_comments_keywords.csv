@@ -1,0 +1,40 @@
+Category_ID,Category_Name,Question_ID,Representative_Comment,Keywords
+OV01,Seasonal Fit & Environmental Atmosphere,Q002,Scene perceived as a summer day,kakigori shop; selling kakigori; short sleeves; it’s summer; summer day; summer evening; summer vegetables; goya; okra
+OV01,Seasonal Fit & Environmental Atmosphere,Q002,Lighting suggests early afternoon,early afternoon; sunlight; the shadows; after midday; about 4 p.m.; late afternoon
+OV01,Seasonal Fit & Environmental Atmosphere,Q002,Lighting suggests early evening,evening; summer evening; a little before evening; early evening; shadows were getting long; position of the sunlight
+OV01,Seasonal Fit & Environmental Atmosphere,Q002,Season seems like summer but time is unclear,might be summer; summer vegetables; goya; time of day is difficult to figure out
+OV01,Seasonal Fit & Environmental Atmosphere,Q002,Daytime brightness indicates morning or early afternoon,looks bright; either morning or early afternoon
+OV02,"Safety, Accessibility & Participation Ease",Q009,Feels easy to participate alone,easy; easy to join; easy to join alone; many people were there alone; join comfortably; atmosphere feels homey; signs are nice; casually stop by; walk around and take a look; easy to join the event even if I were alone
+OV02,"Safety, Accessibility & Participation Ease",Q009,Hesitant to participate alone,probably wouldn’t go alone; wouldn’t feel like joining by myself; don’t think I would go alone
+OV02,"Safety, Accessibility & Participation Ease",Q009,Would join only if accompanied,with my girlfriend or someone else
+OV02,"Safety, Accessibility & Participation Ease",Q012,Concern about exposed cables or electrical safety,electrical wiring; cables are exposed outside; not sure if that would be safe; not sure where they’re getting the electricity; depending on the weather it could be dangerous; maybe just the cables
+OV02,"Safety, Accessibility & Participation Ease",Q012,Risk from nearby traffic or road proximity,cars pass through this road often; traffic; right next to the road; run out into the street
+OV02,"Safety, Accessibility & Participation Ease",Q012,Uneven or inaccessible ground may be unsafe,people using wheelchairs; ground seems uneven; could be bumpy
+OV02,"Safety, Accessibility & Participation Ease",Q012,Heat and lack of shade cause discomfort,summer; no shade; hard to stay there for long; even more difficult for children
+OV02,"Safety, Accessibility & Participation Ease",Q012,No particular danger noticed,don’t think there’s anything particularly dangerous; don’t think so; Nothing in particular; don’t see anything that looks dangerous; tents seem fine; proper safety measures are in place
+OV03,Flow & Layout Usability,Q013,Movement route is easy to understand due to the straight path,set along the path; follow the walkway; easy to understand; straight line; straight path; space is flat and straightforward
+OV03,Flow & Layout Usability,Q013,Flow is a single pass-through because stalls are on one side,shops are only on one side; walk through once; not return
+OV03,Flow & Layout Usability,Q013,Movement may follow a simple U-shaped route,U-shaped route
+OV03,Flow & Layout Usability,Q013,Movement route is hard to imagine,hard for me to imagine the general flow
+OV04,Target Market,Q005,Especially suitable for couples,couples; especially nice for couples; couples enjoying buying things together; couples in their forties
+OV04,Target Market,Q005,Popular with families or parents with children,Families would also have a good time; Families with children; mothers with children; parents; take their kids out in the morning; family outing
+OV04,Target Market,Q005,Appealing to middle-aged or older adults,older women; homemakers; couples in their 30s to 40s; middle-aged or older people
+OV04,Target Market,Q005,A good fit for local neighborhood residents,local residents; local residents from the neighborhood
+OV04,Target Market,Q005,Attractive for relaxed adults or casual visitors,stopping by casually after work; small groups; stop by while taking a walk; have some free time; want to buy a snack
+OV05,Shop suggestion,Q006,Add a fun activity stall for children,goldfish scooping stall; goldfish scooping; shooting-game booth; hands-on activity; something children would enjoy
+OV05,Shop suggestion,Q006,Add a beverage stall to increase drink options,drink shop; not many beverages being sold; orange juice; apple juice
+OV05,Shop suggestion,Q006,Add more savory or hot food stalls,another food stall; fried chicken; more salty options; grilled skewers; sounds and smells; more engaging atmosphere
+OV05,Shop suggestion,Q006,Add shops selling handmade or decorative items,bazaar; small handmade items; keychains; interior goods; small decorative items; dried flowers; accessories that can be displayed at home
+OV05,Shop suggestion,Q006,Add small snacks that children can enjoy,popcorn; donuts; something small that children enjoy; snacks; treats; keep children entertained
+OV06,Participation Appeal & Motivation,Q015,Has participated before and would join again,I would like to participate; already been to this event; with my girlfriend; we enjoyed the kakigori; bought flowers
+OV06,Participation Appeal & Motivation,Q015,Would stop by casually but not visit intentionally,might not go specifically for this event; would probably stop by if I happened to pass it; If I happened to see it nearby; might stop by; casually; if I happened to be nearby
+OV06,Participation Appeal & Motivation,Q015,Low motivation because the event feels small or quiet,not a very large event; the event is small; doesn’t look very crowded; not that busy; don’t think I would feel motivated
+OV06,Participation Appeal & Motivation,Q015,Would only join if the event were larger,if the event were larger in scale
+OV06,Participation Appeal & Motivation,Q015,Participation depends on proximity to home,very close to my home
+OV06,Participation Appeal & Motivation,Q016,Easy to join because the atmosphere feels welcoming,atmosphere is really nice; came across it by chance; stopped by; felt very welcoming; friendly; welcoming atmosphere; easy to stop by
+OV06,Participation Appeal & Motivation,Q016,Would join more easily when accompanied,if I were with another person
+OV06,Participation Appeal & Motivation,Q016,Likely to stop by briefly out of curiosity,stop by and take a quick look
+OV06,Participation Appeal & Motivation,Q016,Would join only if encouraged by others,if a friend wanted to check it out; might go along with them
+OV06,Participation Appeal & Motivation,Q016,Ease of joining depends on how lively it looks,if it looked lively; if it were empty; might feel a bit suspicious; gives the impression that something enjoyable is happening
+OV06,Participation Appeal & Motivation,Q016,Feels open to non-locals and easy for anyone to join,doesn’t feel overly local or exclusive; events in Matsue that only residents can enjoy; this one doesn’t (make me hesitate)
+OV06,Participation Appeal & Motivation,Q016,Participation is limited by practical issues like parking,might be inconvenient; don’t see any parking spaces; wouldn’t go out of my way to look for parking
